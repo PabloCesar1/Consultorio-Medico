@@ -19,6 +19,9 @@ class viewPaciente(QtWidgets.QMainWindow, Ui_Paciente):
         self.listaEmpleados.setSelectionMode(QtWidgets.QTableWidget.SingleSelection)
         self.interfaz = interfaz
         self.listaEmpleados.itemDoubleClicked.connect(self.EditPaciente)
+        self.btnEliminar.clicked.connect(self.dropPaciente)
+        self.btnBuscar.clicked.connect(self.Filtrar)
+
 
     def RellenarTabla(self):
         self.listaEmpleados.clear()
@@ -67,4 +70,35 @@ class viewPaciente(QtWidgets.QMainWindow, Ui_Paciente):
         self.interfaz.viewFormulario.btnGuardar.setText("Modificar")
         self.interfaz.viewFormulario.fotoActual = str(datos[22].text())
         self.interfaz.viewFormulario.btnLimpiar.setEnabled(False)
-        
+
+    def dropPaciente(self):
+        datos = self.listaEmpleados.selectedItems()
+        if len(datos) <= 0:
+            QtWidgets.QMessageBox.information(self, 'Informacion', 'Seleccione el usuario que desea eliminar', QtWidgets.QMessageBox.Ok)
+        else:
+            confirmar = QtWidgets.QMessageBox.question(self, "Informacion", "¿Seguro que desea eliminar los datos de este Paciente?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+            if confirmar == QtWidgets.QMessageBox.Yes:
+                QtWidgets.QMessageBox.information(self, 'Informacion', self.Paciente.dropPaciente(datos[0].text()), QtWidgets.QMessageBox.Ok)
+                self.RellenarTabla()
+
+    def Filtrar(self):
+        item = self.cbxBusq.currentText()
+        self.dato = self.txtBusq.text()
+        self.listaEmpleados.clear()
+        self.listaEmpleados.setColumnCount(23)
+        self.listaEmpleados.setHorizontalHeaderLabels(['Id', 'Cédula', 'Nombres', 'Apellidos', 'Fecha Nacimiento','Edad', '# Aportaciones', 'Dirección 1', 'Dirección 2', 'Teléfono 1', 'Teléfono 2', 'Email', 'Sueldo', 'Dias Laborales','Género', '   Nivel Académico', '# Cuenta', 'Discapacidad', 'Nombre Recomendado', 'Teléfono Recomendado', 'Celular Recomendado', 'Ciudad', 'Foto'])
+        if self.dato != '':
+            if item == 'Cédula':
+                datos = self.Paciente.buscarPacientePorCedula(self.dato)
+            elif item == 'Apellidos':
+                datos = self.Paciente.buscarPacientePorApellidos(self.dato)
+            elif item == 'Nombres':
+                datos = self.Paciente.buscarPacientePorNombres(self.dato)
+            elif item == 'Ciudad':
+                datos = self.Paciente.buscarPacientePorCiudad(self.dato)
+        else:
+            datos = self.Paciente.obtenerPacientes()
+        self.listaEmpleados.setRowCount(len(datos))
+        for i,row in enumerate(datos):
+            for j,val in enumerate(row):
+                self.listaEmpleados.setItem(i,j,QtWidgets.QTableWidgetItem(str(val)))

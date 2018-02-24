@@ -53,6 +53,8 @@ class Paciente(object):
 		return mensaje
 
 	def UpdatePaciente(self):
+		self.conn = Connection.Connect()
+		cursor = self.conn.cursor()
 		cursor.execute("UPDATE empleado SET nombres=%s, apellidos=%s, fecha_nacimiento=%s, edad=%s,  numero_aportaciones=%s, direccion1=%s,"
 			"direccion2=%s, telefono1=%s, telefono2=%s, email=%s, sueldo=%s, dias_laborales=%s, genero=%s, nivel_academico=%s, numero_cuenta_bancaria=%s, tipo_discapacidad=%s,"
 			"nombre_recomendado=%s, telefono_recomendado=%s, celular_recomendado=%s, ciudad=%s, foto=%s where empleado_oid=%s",
@@ -65,7 +67,7 @@ class Paciente(object):
 		cursor.close()
 		self.conn.close()
 		return mensaje
-		
+
 	def obtenerPacientes(self):
 		"""Método para buscar los empleados de la base de datos y mostrarlos en una tabla"""
 		self.conn = Connection.Connect()
@@ -75,6 +77,54 @@ class Paciente(object):
 		cursor.close()
 		self.conn.close() # Se realiza un conmit
 		return datos
+
+	def dropPaciente(self,id):
+		self.conn = Connection.Connect()
+		cursor = self.conn.cursor()
+		cursor.execute("delete from empleado where empleado_oid = %s", [id]) # Se ejecuta la sentencia sql
+		self.conn.commit() # Se realiza un conmit
+		cursor.close()
+		self.conn.close() # Se realiza un conmit
+		mensaje = 'Empleado Eliminado'
+		return mensaje
+
+	def buscarPacientePorCedula(self,cedula):
+		self.conn = Connection.Connect()
+		cursor = self.conn.cursor()
+		cursor.execute("SELECT * FROM empleado where cedula = %s", [cedula])
+		datos = cursor.fetchall()
+		cursor.close()
+		self.conn.close() # Se realiza un conmit
+		return datos
+
+	def buscarPacientePorApellidos(self,apellidos):
+		self.conn = Connection.Connect()
+		cursor = self.conn.cursor()
+		cursor.execute("SELECT * FROM empleado where apellidos = %s", [apellidos])
+		datos = cursor.fetchall()
+		cursor.close()
+		self.conn.close()
+		return datos
+
+	def buscarPacientePorNombres(self,nombres):
+		self.conn = Connection.Connect()
+		cursor = self.conn.cursor()
+		cursor.execute("SELECT * FROM empleado where nombres = %s", [nombres])
+		datos = cursor.fetchall()
+		cursor.close()
+		self.conn.close()
+		return datos
+
+	def buscarPacientePorCiudad(self,ciudad):
+		self.conn = Connection.Connect()
+		cursor = self.conn.cursor()
+		cursor.execute("SELECT * FROM empleado where ciudad = %s", [ciudad])
+		datos = cursor.fetchall()
+		cursor.close()
+		self.conn.close()
+		return datos
+
+
 
 	def verificar(self, nro):
 		self.mensaje = ''
