@@ -45,7 +45,7 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			self.contenidoPrincipal.addWidget(self.viewPaciente.contenidoPaciente)
 			print("creando vista Paciente")
 		self.viewPaciente.contenidoPaciente.show()
-		##self.viewPaciente.RellenarTabla()
+		self.viewPaciente.RellenarTabla()
 
 	def citasMedicas(self):
 		objetos = (self.contenidoPrincipal.itemAt(i).widget() for i in range(self.contenidoPrincipal.count())) 

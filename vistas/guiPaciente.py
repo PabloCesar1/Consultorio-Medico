@@ -14,10 +14,12 @@ class viewPaciente(QtWidgets.QMainWindow, Ui_Paciente):
         self.RellenarTabla()
 
     def RellenarTabla(self):
-    	self.listaEmpleados.clear()
-    	self.listaEmpleados.setColumnCount(23)
-    	self.listaEmpleados.setHorizontalHeaderLabels(['Id', 'Cédula', 'Nombres', 'Apellidos', 'Fecha Nacimiento','Edad', '# Aportaciones', 'Dirección 1', 'Dirección 2', 'Teléfono 1', 'Teléfono 2', 'Email', 'Sueldo', 'Dias Laborales','Género', '	Nivel Académico', '# Cuenta', 'Discapacidad', 'Nombre Recomendado', 'Teléfono Recomendado', 'Celular Recomendado', 'Ciudad', 'Foto'])
-    	datos = self.MPaciente.obtenerPacientes()
-    	for i,row in enumerate(datos):
-    		for j,val in enumerate(row):
-    			self.listaEmpleados.setItem(i,j,QtWidgets.QTableWidgetItem(str(val)))
+        self.listaEmpleados.clear()
+        self.listaEmpleados.setColumnCount(23)
+        self.listaEmpleados.setHorizontalHeaderLabels(['Id', 'Cédula', 'Nombres', 'Apellidos', 'Fecha Nacimiento','Edad', '# Aportaciones', 'Dirección 1', 'Dirección 2', 'Teléfono 1', 'Teléfono 2', 'Email', 'Sueldo', 'Dias Laborales','Género', '   Nivel Académico', '# Cuenta', 'Discapacidad', 'Nombre Recomendado', 'Teléfono Recomendado', 'Celular Recomendado', 'Ciudad', 'Foto'])
+        datos = self.MPaciente.obtenerPacientes()
+        self.listaEmpleados.setRowCount(len(datos))
+        for i,row in enumerate(datos):
+            for j,val in enumerate(row):
+                self.listaEmpleados.setItem(i,j,QtWidgets.QTableWidgetItem(str(val)))
+        
