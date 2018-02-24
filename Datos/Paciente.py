@@ -5,7 +5,9 @@ from Connection import Connection # Del directorio Raiz importar el modulo Conne
 
 
 class Paciente(object):
-	def __init__(self,id,cedula,nombres,apellidos,fecha,edad,aportaciones,dir1,dir2,telf1,telf2,email,sueldo,diasLabor,sexo,nivelAcad,cuentaBamc,tipoDisc,nombreRec,telfRec,celRec,ciudad,foto):
+	def __init__(self,id=None,cedula=None,nombres=None,apellidos=None,fecha=None,edad=None,aportaciones=None,
+		dir1=None,dir2=None,telf1=None,telf2=None,email=None,sueldo=None,diasLabor=None,sexo=None,
+		nivelAcad=None,cuentaBamc=None,tipoDisc=None,nombreRec=None,telfRec=None,celRec=None,ciudad=None,foto=None):
 		self.id = id
 		self.cedula = cedula
 		self.nombres = nombres
@@ -49,6 +51,16 @@ class Paciente(object):
 		else:
 			mensaje = "Cedula Incorrecta"
 		return mensaje
+		
+	def obtenerPacientes(self):
+		"""Método para buscar los empleados de la base de datos y mostrarlos en una tabla"""
+		self.conn = Connection.Connect()
+		cursor = self.conn.cursor()
+		cursor.execute("SELECT * FROM empleado") # Sentencia para consultar en la tabla empleado
+		datos = cursor.fetchall() # Obtengo el resultado de la consulta
+		cursor.close()
+		self.conn.close() # Se realiza un conmit
+		return datos
 
 	def verificar(self, nro):
 		self.mensaje = ''
