@@ -51,6 +51,20 @@ class Paciente(object):
 		else:
 			mensaje = "Cedula Incorrecta"
 		return mensaje
+
+	def UpdatePaciente(self):
+		cursor.execute("UPDATE empleado SET nombres=%s, apellidos=%s, fecha_nacimiento=%s, edad=%s,  numero_aportaciones=%s, direccion1=%s,"
+			"direccion2=%s, telefono1=%s, telefono2=%s, email=%s, sueldo=%s, dias_laborales=%s, genero=%s, nivel_academico=%s, numero_cuenta_bancaria=%s, tipo_discapacidad=%s,"
+			"nombre_recomendado=%s, telefono_recomendado=%s, celular_recomendado=%s, ciudad=%s, foto=%s where empleado_oid=%s",
+			#" VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", 
+			[self.nombres, self.apellidos, self.fecha, self.edad, self.aportaciones, self.dir1, self.dir2,  self.telf1, 
+			self.telf2, self.email, self.sueldo, self.diasLabor, self.sexo, self.nivelAcad, self.cuentaBamc, self.tipoDisc,
+			self.nombreRec, self.telfRec, self.celRec, self.ciudad, 'Ninguna', self.id])
+		mensaje = 'Los datos han sido actualizados'
+		self.conn.commit()
+		cursor.close()
+		self.conn.close()
+		return mensaje
 		
 	def obtenerPacientes(self):
 		"""Método para buscar los empleados de la base de datos y mostrarlos en una tabla"""
