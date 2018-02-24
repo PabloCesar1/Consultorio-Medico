@@ -6,11 +6,11 @@ Creado el 25 de Enero de 2018
 from PyQt5 import uic, QtWidgets, QtGui, QtCore, Qt #importamos uic y QtWidgets desde el modulo PyQt5
 import sys
 from Connection import Connection
+sys.path.append('vistas') 
 from guiPaciente import *
 from guiCitas import *
 from guiFormulario import *
-
-qtCreatorFile = "menu.ui"
+qtCreatorFile = "diseno/menu.ui"
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile) # usammos loadUiType para cargar el diseño de qt creator
 

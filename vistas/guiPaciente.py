@@ -3,7 +3,7 @@ import sys
 import psycopg2
 from MPaciente import * 
 
-qtPaciente = 'paciente.ui'
+qtPaciente = 'diseno/paciente.ui'
 Ui_Paciente, QtBaseClass4 = uic.loadUiType(qtPaciente)
 class viewPaciente(QtWidgets.QMainWindow, Ui_Paciente):
     def __init__(self):

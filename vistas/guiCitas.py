@@ -3,9 +3,9 @@ import sys
 import datetime
 from Connection import Connection
 
-qtCitas = "citas.ui"
-qtDia = 'dia.ui'
-qtCita = 'nueva.ui'
+qtCitas = "diseno/citas.ui"
+qtDia = 'diseno/dia.ui'
+qtCita = 'diseno/nueva.ui'
 
 Ui_MainWindowCitas, QtBaseClassCitas = uic.loadUiType(qtCitas)
 Ui_Dia, QtBaseClass2 = uic.loadUiType(qtDia)
