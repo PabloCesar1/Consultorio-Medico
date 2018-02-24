@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Fondo</class>
+ <widget class="QWidget" name="Fondo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>949</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#Fondo{
+	background-color: #fff;
+}
+#fondoTitulo{
+	background-color:#03A9F4;
+	box-shadow: 10px 5px 5px black;
+}
+#fondoTitulo_2{
+	background-color:#03A9F4;
+	box-shadow: 10px 5px 5px black;
+}
+#lblDia{
+	font-size: 18px;
+    color:#fff;
+	font-family: Arial, Verdana;
+	font-weight: bold;
+}
+
+
+#btnEliminar{ background: #B71C1C; color: #fff; font-size: 12px; font-weight: bold; }
+#btnNuevo{ background: #0277BD; color: #fff; font-size: 24px;font-weight: bold;  }
+#btnBuscarImg{ background: #0277BD; color: #fff; font-size: 12px; font-weight: bold; }
+
+#btnBuscar{ background: #2E7D32; color: #fff; font-size: 12px; font-weight: bold; }
+
+#btn_menu1{ background: #0277BD; color: #fff; font-size: 12px;font-weight: bold;  }
+#btn_menu2{ background: #0277BD; color: #fff; font-size: 12px;font-weight: bold;  }
+#btn_menu3{ background: #0277BD; color: #fff; font-size: 12px;font-weight: bold;  }
+#btn_menu4{ background: #0277BD; color: #fff; font-size: 12px;font-weight: bold;  }
+#btn_menu5{ background: #0277BD; color: #fff; font-size: 12px;font-weight: bold;  }
+
+#verImagen{
+	background-color:#FAFAFA;
+}
+</string>
+  </property>
+  <widget class="QFrame" name="fondoTitulo">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>951</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="lblDia">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>30</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>d</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>101</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>D:/Aplicación Consultorio Médico/img/logo.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QTableWidget" name="citas">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>150</y>
+     <width>951</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="cursor" stdset="0">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="statusTip">
+    <string/>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+   <property name="midLineWidth">
+    <number>0</number>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustIgnored</enum>
+   </property>
+   <property name="autoScrollMargin">
+    <number>16</number>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="dragDropOverwriteMode">
+    <bool>true</bool>
+   </property>
+   <property name="alternatingRowColors">
+    <bool>true</bool>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::SingleSelection</enum>
+   </property>
+   <property name="selectionBehavior">
+    <enum>QAbstractItemView::SelectRows</enum>
+   </property>
+   <property name="showGrid">
+    <bool>false</bool>
+   </property>
+   <property name="gridStyle">
+    <enum>Qt::SolidLine</enum>
+   </property>
+   <property name="sortingEnabled">
+    <bool>false</bool>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+   <property name="cornerButtonEnabled">
+    <bool>true</bool>
+   </property>
+   <property name="rowCount">
+    <number>25</number>
+   </property>
+   <property name="columnCount">
+    <number>3</number>
+   </property>
+   <attribute name="horizontalHeaderCascadingSectionResizes">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>300</number>
+   </attribute>
+   <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderVisible">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="verticalHeaderCascadingSectionResizes">
+    <bool>false</bool>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>50</number>
+   </attribute>
+   <attribute name="verticalHeaderMinimumSectionSize">
+    <number>19</number>
+   </attribute>
+   <row>
+    <property name="text">
+     <string>00:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>01:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>02:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>03:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>04:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>05:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>06:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>07:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>08:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>09:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>10:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>11:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>12:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>13:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>14:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>15:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>16:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>17:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>18:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>19:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>20:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>21:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>22:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>23:00</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>24:00</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Paciente</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Doctor</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Descripción</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="btnNuevo">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>110</y>
+     <width>61</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nueva cita</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>110</y>
+     <width>121</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Seleccione una hora</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
