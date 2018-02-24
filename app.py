@@ -46,6 +46,8 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			print("creando vista Paciente")
 		self.viewPaciente.contenidoPaciente.show()
 		self.viewPaciente.RellenarTabla()
+		self.menu1.setStyleSheet("background-color:#0cc597;");
+		self.menu3.setStyleSheet("background-color:#2c333e;");
 
 	def citasMedicas(self):
 		objetos = (self.contenidoPrincipal.itemAt(i).widget() for i in range(self.contenidoPrincipal.count())) 
@@ -58,6 +60,8 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			self.contenidoPrincipal.addWidget(self.viewCitas.contenidoCitas)
 			print("creando vista Citas")
 		self.viewCitas.contenidoCitas.show()
+		self.menu3.setStyleSheet("background-color:#0cc597;");
+		self.menu1.setStyleSheet("background-color:#2c333e;");
 
 	def nuevoPaciente(self):
 		objetos = (self.contenidoPrincipal.itemAt(i).widget() for i in range(self.contenidoPrincipal.count())) 
