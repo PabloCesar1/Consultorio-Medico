@@ -2,6 +2,8 @@ from PyQt5 import uic, QtWidgets, QtGui, QtCore, Qt #importamos uic y QtWidgets 
 import sys
 import datetime
 from Connection import Connection
+sys.path.append('Datos')
+from dCitas import *
 
 qtCitas = "diseno/citas.ui"
 qtDia = 'diseno/dia.ui'
@@ -123,19 +125,16 @@ class Cita(QtWidgets.QMainWindow, Ui_Cita):
 		self.btnGuardar.clicked.connect(self.registrarCita)
 
 	def registrarCita(self):
-		self.conn = Connection.Connect()
-		cursor = self.conn.cursor()
-		self.paciente = str(self.txtPaciente.text())
-		self.doctor = str(self.txtDoctor.text())
-		self.descripcion = str(self.txtDescripcion.text())
-		self.fecha = str(self.txtFecha.text())
-		self.hour = str(self.txtHora.text())
-		cursor.execute("INSERT INTO citas (paciente, doctor, descripcion, fecha, hora) VALUES (%s, %s, %s, %s, %s);", 
-			[self.paciente, self.doctor, self.descripcion, self.fecha, self.hour])
-		QtWidgets.QMessageBox.information(self, 'Informacion', 'Registro Correcto', QtWidgets.QMessageBox.Ok)
-		self.conn.commit()
-		cursor.close()
-		self.conn.close()
+		paciente = str(self.txtPaciente.text())
+		doctor = str(self.txtDoctor.text())
+		descripcion = str(self.txtDescripcion.text())
+		fecha = str(self.txtFecha.text())
+		hora = str(self.txtHora.text())
+		descripcion = str(self.txtDescripcion.text())
+		c = dCita(paciente, doctor, descripcion, fecha, hora)
+		QtWidgets.QMessageBox.information(self, 'Informacion', c.registrarCita(), QtWidgets.QMessageBox.Ok)
+
+
 
 class notificacion():
 	citas = 0
