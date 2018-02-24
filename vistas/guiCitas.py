@@ -35,7 +35,6 @@ class viewCitas(QtWidgets.QMainWindow, Ui_MainWindowCitas):  # Creamos nuestra c
 	def mostrarCitas(self):
 		self.infCitas.show()
 
-	
 	def citasPorMes(self): # Colorea la fecha en la que hay citas médicas
 		c = dCita() # Instancia de la clase dCita (de datos)
 		result = c.consultaCitas() # Obtengo el resultado de la consulta
@@ -43,18 +42,12 @@ class viewCitas(QtWidgets.QMainWindow, Ui_MainWindowCitas):  # Creamos nuestra c
 			self.calendario.setDateTextFormat(datetime.datetime.strptime(row[4], "%d/%m/%Y"), self.format)
 
 	def numeroCitasDiaria(self):
-		self.conn = Connection.Connect()
-		cursor = self.conn.cursor()
-		d = datetime.datetime.now()
-		hoy = (str(d.day)+'/'+str(d.month)+'/'+str(d.year))
-		cursor.execute("SELECT * FROM citas WHERE fecha =  %s;", [hoy])
-		result = cursor.fetchall()
-		self.lblNumeroCitas.setText(str(len(result)))
-		self.lblFechaActual.setText('Fecha: \n'+hoy)
-		cursor.close()
-		self.conn.close()
-		n = notificacion()
-		n.informacion(len(result))
+		c = dCita() # Instancia de la clase dCita (de datos)
+		result = c.numeroCitasDiarias() # Obtengo el resultado de la consulta
+		self.lblNumeroCitas.setText(str(len(result[0]))) # muestro en el label la cantidad de citas diarias
+		self.lblFechaActual.setText('Fecha: \n'+result[1]) # muestro en el label la fecha actual
+		n = notificacion() # Instancia de la clase notificación
+		n.informacion(len(result[0])) # Envía la cantidad de citas diarias que se mostrará en la notificación
 
 #--------------------------------------------------------------------
 class informacionCitas(QtWidgets.QMainWindow, Ui_Dia):
@@ -69,6 +62,22 @@ class informacionCitas(QtWidgets.QMainWindow, Ui_Dia):
 		self.citas.cellClicked.connect(self.obtenerHora)
 		self.citasPorDia()
 
+	def citasPorDia(self):
+		c = dCita() # Instancia de la clase dCita (de datos)
+		result = c.consultaCitasPorDias(self.date) # Obtengo el resultado de la consulta
+		for row in result: # Por cada fila en el resultado
+			hora = row[5]
+			for index in range(25): # Comparar la hora de la base de datos con la de la fila
+				horaFila = self.citas.verticalHeaderItem(index).text() # Horas de la tabla (de 00:00 a 24:00)
+				if horaFila == hora: # si la hora de la fila es igual al del resultado de la consulta
+					#--------------Mostrar datos en tabla-----------
+					self.citas.setItem(index, 0, QtWidgets.QTableWidgetItem(row[1]))
+					self.citas.item(index, 0).setBackground(QtCore.Qt.green) # Cambiar color de la columna a verde
+					self.citas.setItem(index, 1, QtWidgets.QTableWidgetItem(row[2]))
+					self.citas.item(index, 1).setBackground(QtCore.Qt.green) # Cambiar color de la columna a verde
+					self.citas.setItem(index, 2, QtWidgets.QTableWidgetItem(row[3]))
+					self.citas.item(index, 2).setBackground(QtCore.Qt.green) # Cambiar color de la columna a verde
+
 	def obtenerHora(self):
 		indexes = self.citas.selectionModel().selectedRows()
 		self.hora = None
@@ -82,29 +91,6 @@ class informacionCitas(QtWidgets.QMainWindow, Ui_Dia):
 			self.cita.show()
 		else:
 			QtWidgets.QMessageBox.information(self, 'Informacion', 'Por favor Seleccione la hora de la cita', QtWidgets.QMessageBox.Ok)
-
-	def citasPorDia(self):
-		self.conn = Connection.Connect()
-		cursor = self.conn.cursor()
-		self.fecha = (str(self.date.day()) +'/'+str(self.date.month()) +'/'+str(self.date.year()))
-		cursor.execute("SELECT * FROM citas WHERE fecha =  %s;", [self.fecha])
-		result = cursor.fetchall()
-		for row in result:
-			hora = row[5]
-			#------------Comparar la hora de la base de datos con la de la fila--------------
-			for index in range(25):
-				horaFila = self.citas.verticalHeaderItem(index).text()
-				if horaFila == hora:
-					#--------------Mostrar datos en tabla-----------
-					self.citas.setItem(index, 0, QtWidgets.QTableWidgetItem(row[1]))
-					self.citas.item(index, 0).setBackground(QtCore.Qt.green)
-					self.citas.setItem(index, 1, QtWidgets.QTableWidgetItem(row[2]))
-					self.citas.item(index, 1).setBackground(QtCore.Qt.green)
-					self.citas.setItem(index, 2, QtWidgets.QTableWidgetItem(row[3]))
-					self.citas.item(index, 2).setBackground(QtCore.Qt.green)
-
-		cursor.close()
-		self.conn.close()
 
 #--------------------------------------------------------------------------------------------------
 class Cita(QtWidgets.QMainWindow, Ui_Cita):
