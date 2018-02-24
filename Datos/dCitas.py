@@ -7,8 +7,8 @@ class dCita():
     """Clase para acceder a los datos"""
     # Referencia a los campos de la tabla 'Citas'
     # Variables De tipo privado
-    def __init__(self, paciente, doctor, descripcion, fecha, hora):
-        self.idCita = None
+    def __init__(self, idcita=None, paciente=None, doctor=None, descripcion=None, fecha=None, hora=None):
+        self.idCita = idcita
         self.paciente = paciente
         self.doctor = doctor
         self.descripcion = descripcion
@@ -28,3 +28,14 @@ class dCita():
         cursor.close()
         self.conn.close()
         return mensaje
+
+    def consultaCitas(self):
+        """Método de consulta de todas la citas médicas"""
+        self.conn = Connection.Connect() # Conexión a la base de datos
+        cursor = self.conn.cursor() # Creación del cursor
+        cursor.execute("SELECT * FROM citas") # Sentencia para consulta
+        result = cursor.fetchall() # Obteniendo resultados
+        cursor.close()
+        self.conn.close()
+        return result # resultado
+

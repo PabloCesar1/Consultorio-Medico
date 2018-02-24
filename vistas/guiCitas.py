@@ -36,17 +36,11 @@ class viewCitas(QtWidgets.QMainWindow, Ui_MainWindowCitas):  # Creamos nuestra c
 		self.infCitas.show()
 
 	
-	def citasPorMes(self):
-		self.conn = Connection.Connect()
-		cursor = self.conn.cursor()
-		cursor.execute("SELECT * FROM citas")
-		result = cursor.fetchall()
-		for row in result:
-			fecha = row[4]
-			#print(fecha)
-			self.calendario.setDateTextFormat(datetime.datetime.strptime(fecha, "%d/%m/%Y"), self.format)
-		cursor.close()
-		self.conn.close()
+	def citasPorMes(self): # Colorea la fecha en la que hay citas médicas
+		c = dCita() # Instancia de la clase dCita (de datos)
+		result = c.consultaCitas() # Obtengo el resultado de la consulta
+		for row in result: # Por cada fila en el resultado obtenido se pintaran de verde las fechas en que hayan citas 
+			self.calendario.setDateTextFormat(datetime.datetime.strptime(row[4], "%d/%m/%Y"), self.format)
 
 	def numeroCitasDiaria(self):
 		self.conn = Connection.Connect()
@@ -131,9 +125,8 @@ class Cita(QtWidgets.QMainWindow, Ui_Cita):
 		fecha = str(self.txtFecha.text())
 		hora = str(self.txtHora.text())
 		descripcion = str(self.txtDescripcion.text())
-		c = dCita(paciente, doctor, descripcion, fecha, hora)
+		c = dCita(None, paciente, doctor, descripcion, fecha, hora)
 		QtWidgets.QMessageBox.information(self, 'Informacion', c.registrarCita(), QtWidgets.QMessageBox.Ok)
-
 
 
 class notificacion():
