@@ -37,7 +37,7 @@
 	font-weight: bold;
 }
 
-#btnGuardar{ background: #2E7D32; color: #fff; font-size: 12px; font-weight: bold; }
+#btnGuardar,#btnBuscar{ background: #2E7D32; color: #fff; font-size: 12px; font-weight: bold; }
 #btnEliminar,#btnRegresar{ background: #B71C1C; color: #fff; font-size: 12px; font-weight: bold; }
 #btnLimpiar,#btnNuevo{ background: #0277BD; color: #fff; font-size: 12px;font-weight: bold;  }
 #btnBuscarImg{ background: #0277BD; color: #fff; font-size: 12px; font-weight: bold; }

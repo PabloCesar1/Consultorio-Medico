@@ -21,6 +21,33 @@ class viewFormPaciente(QtWidgets.QMainWindow, Ui_Formulario):
     		str(self.txtTelefonoRecom.text()),str(self.txtCelularRecom.text()),str(self.txtCiudad.text()),'Ninguna')
     	QtWidgets.QMessageBox.information(self, 'Informacion', paciente.RegistrarPaciente(), QtWidgets.QMessageBox.Ok)
 
+    def borrarCampos(self):
+        """Este metodo nos permite vaciar los campos del formulario de registro"""
+        self.txtID.setText("")
+        self.txtCedula.setText("")
+        self.txtNombres.setText("")
+        self.txtApellidos.setText("")
+        self.txtEdad.setValue(1)
+        self.txtAport.setValue(0)
+        self.txtDireccion1.setText("")
+        self.txtDireccion2.setText("")
+        self.txtTelefono1.setText("")
+        self.txtTelefono2.setText("")
+        self.txtCorreo.setText("")
+        self.txtSueldo.setValue(float(0))
+        self.txtDias.setValue(0)
+        self.cbxSexo.setCurrentIndex(0)
+        self.cbxNivel.setCurrentIndex(0)
+        self.txtCuenta.setText("")
+        self.cbxDiscapacidad.setCurrentIndex(0)
+        self.txtNombreRecom.setText("")
+        self.txtTelefonoRecom.setText("")
+        self.txtCelularRecom.setText("")
+        self.txtCiudad.setText("")
+        self.btnLimpiar.setEnabled(True)
+        self.verImagen.setPixmap(QtGui.QPixmap(''))
+        self.btnGuardar.setText("Guardar")
+
     """    
     def LimpiarFormulario(self)
     	formulario

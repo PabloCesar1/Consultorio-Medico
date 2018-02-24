@@ -23,7 +23,7 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 		Ui_MainWindow.__init__(self) # Iniciar el diseño de qt creator
 		self.setupUi(self)  # Inicializamos la configuracion de la interfaz
 		self.setWindowTitle(u"Citas Médicas")
-		self.viewPaciente = viewPaciente() #Se llama a viewPaciente de guiPaciente
+		self.viewPaciente = viewPaciente(self) #Se llama a viewPaciente de guiPaciente
 		self.viewCitas = viewCitas() #Se a viewCitas de guiCitas
 		self.viewFormulario = viewFormPaciente()
 		self.menu1.clicked.connect(self.mostrarPaciente)
@@ -70,6 +70,7 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			self.contenidoPrincipal.addWidget(self.viewFormulario.centralwidget)
 			print("creando vista FormPaciente")
 		self.viewFormulario.centralwidget.show()
+		self.viewFormulario.borrarCampos()
 
 if __name__ == "__main__":
 	app =  QtWidgets.QApplication(sys.argv)
