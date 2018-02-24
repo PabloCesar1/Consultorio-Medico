@@ -8,12 +8,13 @@ import sys
 from Connection import Connection
 from guiPaciente import *
 from guiCitas import *
+from guiFormulario import *
 
 qtCreatorFile = "menu.ui"
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile) # usammos loadUiType para cargar el diseño de qt creator
 
-#------------------------------------------  QCalendarWidget QWidget { alternate-background-color: rgb(128, 128, 128); }
+#-------------------------------------------------------------------------------------------------
 class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase con sus parametros (QtWidgets.QMainWindow y el diseño de qt creator
 	"""Este clase contiene los metodos para el manejo de registro de estudiantes"""
 	def __init__(self):             # Metodos init para iniciar la aplicacion
@@ -24,8 +25,13 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 		self.setWindowTitle(u"Citas Médicas")
 		self.viewPaciente = viewPaciente() #Se llama a viewPaciente de guiPaciente
 		self.viewCitas = viewCitas() #Se a viewCitas de guiCitas
+		self.viewFormulario = viewFormPaciente()
 		self.menu1.clicked.connect(self.mostrarPaciente)
 		self.menu3.clicked.connect(self.citasMedicas)
+		# se le asigna el evento al boton "nuevo" de la vista paciente
+		self.viewPaciente.btnNuevo.clicked.connect(self.nuevoPaciente)
+		#se le asigna el evento al boton "regresar" de la vista del formulario
+		self.viewFormulario.btnRegresar.clicked.connect(self.mostrarPaciente)
 		self.citasMedicas()
 
 	def mostrarPaciente(self):
@@ -39,6 +45,7 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			self.contenidoPrincipal.addWidget(self.viewPaciente.contenidoPaciente)
 			print("creando vista Paciente")
 		self.viewPaciente.contenidoPaciente.show()
+		##self.viewPaciente.RellenarTabla()
 
 	def citasMedicas(self):
 		objetos = (self.contenidoPrincipal.itemAt(i).widget() for i in range(self.contenidoPrincipal.count())) 
@@ -49,7 +56,20 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			i.hide()
 		if crearCitas:
 			self.contenidoPrincipal.addWidget(self.viewCitas.contenidoCitas)
+			print("creando vista Citas")
 		self.viewCitas.contenidoCitas.show()
+
+	def nuevoPaciente(self):
+		objetos = (self.contenidoPrincipal.itemAt(i).widget() for i in range(self.contenidoPrincipal.count())) 
+		crearForm = True
+		for i in objetos:
+			if i ==  self.viewFormulario.centralwidget:
+				crearForm = False
+			i.hide()
+		if crearForm:
+			self.contenidoPrincipal.addWidget(self.viewFormulario.centralwidget)
+			print("creando vista FormPaciente")
+		self.viewFormulario.centralwidget.show()
 
 if __name__ == "__main__":
 	app =  QtWidgets.QApplication(sys.argv)

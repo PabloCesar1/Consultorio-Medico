@@ -15,7 +15,6 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#Form{  background-color:#fff; }
-#pushButton{  background-color: red; color:#fff;}
 #frame{  background-color:#03A9F4;
 	box-shadow: 10px 5px 5px black;}
 #label{ color:#fff; 	font-weight: bold; }
@@ -38,9 +37,10 @@
 	font-weight: bold;
 }
 
-#btnLimpiar{ background: #0277BD; color: #fff; font-size: 12px;font-weight: bold;  }
-
-
+#btnGuardar{ background: #2E7D32; color: #fff; font-size: 12px; font-weight: bold; }
+#btnEliminar,#btnRegresar{ background: #B71C1C; color: #fff; font-size: 12px; font-weight: bold; }
+#btnLimpiar,#btnNuevo{ background: #0277BD; color: #fff; font-size: 12px;font-weight: bold;  }
+#btnBuscarImg{ background: #0277BD; color: #fff; font-size: 12px; font-weight: bold; }
 
 #calendario2 QToolButton {
   	height: 36px;
@@ -58,7 +58,6 @@
   	font-size: 14px;
   	background-color: rgb(100, 100, 100);
   }
-
 </string>
   </property>
   <widget class="QFrame" name="frame">

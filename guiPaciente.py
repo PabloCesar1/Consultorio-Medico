@@ -1,5 +1,7 @@
 from PyQt5 import uic, QtWidgets, QtGui, QtCore #importamos uic y QtWidgets desde el modulo PyQt5
 import sys
+import psycopg2
+from MPaciente import * 
 
 qtPaciente = 'paciente.ui'
 Ui_Paciente, QtBaseClass4 = uic.loadUiType(qtPaciente)
@@ -8,7 +10,14 @@ class viewPaciente(QtWidgets.QMainWindow, Ui_Paciente):
         QtWidgets.QMainWindow.__init__(self)
         Ui_Paciente.__init__(self) 
         self.setupUi(self)
-        self.btnLimpiar.clicked.connect(self.limpiar)
+        self.MPaciente = Paciente()
+        self.RellenarTabla()
 
-    def limpiar(self):
-        print('probando')
+    def RellenarTabla(self):
+    	self.listaEmpleados.clear()
+    	self.listaEmpleados.setColumnCount(23)
+    	self.listaEmpleados.setHorizontalHeaderLabels(['Id', 'Cédula', 'Nombres', 'Apellidos', 'Fecha Nacimiento','Edad', '# Aportaciones', 'Dirección 1', 'Dirección 2', 'Teléfono 1', 'Teléfono 2', 'Email', 'Sueldo', 'Dias Laborales','Género', '	Nivel Académico', '# Cuenta', 'Discapacidad', 'Nombre Recomendado', 'Teléfono Recomendado', 'Celular Recomendado', 'Ciudad', 'Foto'])
+    	datos = self.MPaciente.obtenerPacientes()
+    	for i,row in enumerate(datos):
+    		for j,val in enumerate(row):
+    			self.listaEmpleados.setItem(i,j,QtWidgets.QTableWidgetItem(str(val)))
