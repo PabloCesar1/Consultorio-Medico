@@ -75,6 +75,7 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			print("creando vista FormPaciente")
 		self.viewFormulario.centralwidget.show()
 		self.viewFormulario.borrarCampos()
+		self.viewFormulario.btnGuardar.setText("Guardar")
 
 if __name__ == "__main__":
 	app =  QtWidgets.QApplication(sys.argv)

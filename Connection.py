@@ -14,8 +14,8 @@ class Connection():
 		host = 'localhost'
 		dbname = 'DB_Empleados'
 		user = 'postgres'
-		#password = '123456'
 		password = '123456'
+		#password = '12345'
 		#password = 'anlecap17'
 		connectionString = "host={0} user={1} dbname={2} password={3}".format(host, user, dbname, password) # Cadena de conexión
 		try:

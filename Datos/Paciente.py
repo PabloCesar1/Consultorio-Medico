@@ -43,7 +43,7 @@ class Paciente(object):
 				" VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s , %s, %s, %s, %s);", 
 				[self.cedula, self.nombres, self.apellidos, self.fecha, self.edad, self.aportaciones, self.dir1, self.dir2,  self.telf1, 
 				self.telf2, self.email, self.sueldo, self.diasLabor, self.sexo, self.nivelAcad, self.cuentaBamc, self.tipoDisc,
-				self.nombreRec, self.telfRec, self.celRec, self.ciudad, 'Ninguna'])
+				self.nombreRec, self.telfRec, self.celRec, self.ciudad, self.foto])
 			mensaje = 'Registro Correcto'
 			self.conn.commit()
 			cursor.close()
@@ -61,7 +61,7 @@ class Paciente(object):
 			#" VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", 
 			[self.nombres, self.apellidos, self.fecha, self.edad, self.aportaciones, self.dir1, self.dir2,  self.telf1, 
 			self.telf2, self.email, self.sueldo, self.diasLabor, self.sexo, self.nivelAcad, self.cuentaBamc, self.tipoDisc,
-			self.nombreRec, self.telfRec, self.celRec, self.ciudad, 'Ninguna', self.id])
+			self.nombreRec, self.telfRec, self.celRec, self.ciudad, self.foto, self.id])
 		mensaje = 'Los datos han sido actualizados'
 		self.conn.commit()
 		cursor.close()
