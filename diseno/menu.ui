@@ -105,6 +105,9 @@
 #menu1:hover, #menu2:hover, #menu3:hover, #menu4:hover, #menu5:hover{
 	background-color:#0cc597; color:#fff;
 }
+#menu1:focus, #menu2:focus, #menu3:focus, #menu4:focus, #menu5:focus{
+	background-color:#0cc597; color:#fff;
+}
 
 </string>
    </property>

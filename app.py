@@ -29,7 +29,10 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 		self.calendarioCitas = calendarioCitas() #Se a viewCitas de guiCitas
 		self.viewFormulario = viewFormPaciente()
 		self.menu1.clicked.connect(self.mostrarPaciente)
+		self.menu2.clicked.connect(self.menu2.clearFocus)
 		self.menu3.clicked.connect(self.citasMedicas)
+		self.menu4.clicked.connect(self.menu4.clearFocus)
+		self.menu5.clicked.connect(self.menu5.clearFocus)
 		# se le asigna el evento al boton "nuevo" de la vista paciente
 		self.viewPaciente.btnNuevo.clicked.connect(self.nuevoPaciente)
 		#se le asigna el evento al boton "regresar" de la vista del formulario
@@ -48,8 +51,7 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			print("creando vista Paciente")
 		self.viewPaciente.contenidoPaciente.show()
 		self.viewPaciente.RellenarTabla()
-		self.menu1.setStyleSheet("background-color:#0cc597;");
-		self.menu3.setStyleSheet("background-color:#2c333e;");
+		self.menu1.setFocus()
 
 	def citasMedicas(self):
 		objetos = (self.contenidoPrincipal.itemAt(i).widget() for i in range(self.contenidoPrincipal.count())) 
@@ -62,8 +64,8 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 			self.contenidoPrincipal.addWidget(self.calendarioCitas.contenidoCitas)
 			print("creando vista Citas")
 		self.calendarioCitas.contenidoCitas.show()
-		self.menu3.setStyleSheet("background-color:#0cc597;");
-		self.menu1.setStyleSheet("background-color:#2c333e;");
+		self.menu3.setFocus()
+		
 
 	def nuevoPaciente(self):
 		objetos = (self.contenidoPrincipal.itemAt(i).widget() for i in range(self.contenidoPrincipal.count())) 
