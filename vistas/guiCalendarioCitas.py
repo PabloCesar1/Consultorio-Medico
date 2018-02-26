@@ -8,7 +8,7 @@ from dCitas import *
 from guiListadoCitas import listadoCitas
 from guiNotificacion import notificacion
 
-qtCitas = "diseno/citas.ui" # Archivo con los componentes gráficos
+qtCitas = "diseno/calendarioCitas.ui" # Archivo con los componentes gráficos
 Ui_MainWindowCitas, QtBaseClassCitas = uic.loadUiType(qtCitas) # carga del archivo
 
 class calendarioCitas(QtWidgets.QMainWindow, Ui_MainWindowCitas):  # Creamos nuestra clase con sus parametros (QtWidgets.QMainWindow y el diseño de qt creator

@@ -4,7 +4,7 @@ import sys, os
 sys.path.append('Datos')
 from dCitas import *
 
-qtCita = 'diseno/nueva.ui' # Archivo con los componentes gráficos
+qtCita = 'diseno/formularioCita.ui' # Archivo con los componentes gráficos
 Ui_Cita, QtBaseClass3 = uic.loadUiType(qtCita)  # carga del archivo
 
 class Cita(QtWidgets.QMainWindow, Ui_Cita):

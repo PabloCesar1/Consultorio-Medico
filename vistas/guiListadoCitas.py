@@ -6,7 +6,7 @@ from dCitas import *
 # Importacion de modulos de vistas
 from guiFormularioCita import Cita as frmCita
 
-qtDia = 'diseno/dia.ui' # Archivo con los componentes gráficos
+qtDia = 'diseno/listadoCitas.ui' # Archivo con los componentes gráficos
 Ui_Dia, QtBaseClass2 = uic.loadUiType(qtDia)  # carga del archivo
 
 class listadoCitas(QtWidgets.QMainWindow, Ui_Dia):
