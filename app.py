@@ -6,12 +6,14 @@ Creado el 25 de Enero de 2018
 from PyQt5 import uic, QtWidgets, QtGui, QtCore, Qt #importamos uic y QtWidgets desde el modulo PyQt5
 import sys
 from Connection import Connection
+#-----------Vistas-------------
 sys.path.append('vistas') 
 from guiPaciente import *
-from guiCitas import *
+from guiCalendarioCitas import *
 from guiFormulario import *
-qtCreatorFile = "diseno/menu.ui"
+from guiNotificacion import notificacion
 
+qtCreatorFile = "diseno/menu.ui"
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile) # usammos loadUiType para cargar el diseño de qt creator
 
 #-------------------------------------------------------------------------------------------------
@@ -24,7 +26,7 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 		self.setupUi(self)  # Inicializamos la configuracion de la interfaz
 		self.setWindowTitle(u"Citas Médicas")
 		self.viewPaciente = viewPaciente(self) #Se llama a viewPaciente de guiPaciente
-		self.viewCitas = viewCitas() #Se a viewCitas de guiCitas
+		self.calendarioCitas = calendarioCitas() #Se a viewCitas de guiCitas
 		self.viewFormulario = viewFormPaciente()
 		self.menu1.clicked.connect(self.mostrarPaciente)
 		self.menu3.clicked.connect(self.citasMedicas)
@@ -53,13 +55,13 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 		objetos = (self.contenidoPrincipal.itemAt(i).widget() for i in range(self.contenidoPrincipal.count())) 
 		crearCitas = True
 		for i in objetos:
-			if i ==  self.viewCitas.contenidoCitas:
+			if i ==  self.calendarioCitas.contenidoCitas:
 				crearCitas = False
 			i.hide()
 		if crearCitas:
-			self.contenidoPrincipal.addWidget(self.viewCitas.contenidoCitas)
+			self.contenidoPrincipal.addWidget(self.calendarioCitas.contenidoCitas)
 			print("creando vista Citas")
-		self.viewCitas.contenidoCitas.show()
+		self.calendarioCitas.contenidoCitas.show()
 		self.menu3.setStyleSheet("background-color:#0cc597;");
 		self.menu1.setStyleSheet("background-color:#2c333e;");
 
@@ -80,8 +82,7 @@ class Estudiante(QtWidgets.QMainWindow, Ui_MainWindow):  # Creamos nuestra clase
 if __name__ == "__main__":
 	app =  QtWidgets.QApplication(sys.argv)
 	#app.setStyle(QtWidgets.QStyleFactory.create('Fusion')) # <- Choose the style
-	myStyle = MyProxyStyle('Fusion')    # The proxy style should be based on an existing style,
-	# like 'Windows', 'Motif', 'Plastique', 'Fusion', ...
+	myStyle = MyProxyStyle('Fusion')
 	app.setStyle(myStyle)
 	#dark_stylesheet = qdarkstyle.load_stylesheet_pyqt5()
 	#app.setStyleSheet(dark_stylesheet)
