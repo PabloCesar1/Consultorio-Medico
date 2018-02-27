@@ -31,7 +31,7 @@ class listadoCitas(QtWidgets.QMainWindow, Ui_Dia):
 				horaFila = self.citas.verticalHeaderItem(index).text() # Horas de la tabla (de 00:00 a 24:00)
 				if horaFila == hora: # si la hora de la fila es igual al del resultado de la consulta
 					#--------------Mostrar datos en tabla-----------
-					self.citas.setItem(index, 0, QtWidgets.QTableWidgetItem(row[1]))
+					self.citas.setItem(index, 0, QtWidgets.QTableWidgetItem(row[8] + ' ' + row[9]))
 					self.citas.item(index, 0).setBackground(QtCore.Qt.green) # Cambiar color de la columna a verde
 					self.citas.setItem(index, 1, QtWidgets.QTableWidgetItem(row[2]))
 					self.citas.item(index, 1).setBackground(QtCore.Qt.green) # Cambiar color de la columna a verde

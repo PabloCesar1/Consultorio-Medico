@@ -4,8 +4,11 @@ import psycopg2
 import datetime
 sys.path.append('../')
 from Connection import Connection
+from Paciente import Paciente
 
 class dCita():
+
+    datosPaciente = None
 
     def __init__(self, idcita=None, paciente=None, doctor=None, descripcion=None, fecha=None, hora=None):
         self.idCita = idcita
@@ -15,14 +18,26 @@ class dCita():
         self.fecha = fecha
         self.hora = hora
 
-    def registrarCita(self):
+    def comprobarPaciente(self, cedula):
+        """Metodos para comprobar si existe un paciente en especifico"""
+        self.conn = Connection.Connect() # Conexión a la base de datos
+        cursor = self.conn.cursor() # Creación del cursor
+        p = Paciente()
+        global datosPaciente
+        datosPaciente = p.buscarPacientePorCedula(cedula)
+        if len(datosPaciente) == 0:
+            return False
+        else:
+            return datosPaciente
+
+    def registrarCita(self, doctor, descripcion, fecha, hora):
         """Metodos con las operaciones de registro de una cita"""
         self.conn = Connection.Connect() # Conexión a la base de datos
         cursor = self.conn.cursor() # Creación del cursor
         mensaje = ''
         # Ejecución de la sentencia para insertar en la tabla citas
-        cursor.execute("INSERT INTO citas (paciente, doctor, descripcion, fecha, hora) VALUES (%s, %s, %s, %s, %s);",
-         [self.paciente, self.doctor, self.descripcion, self.fecha, self.hora])
+        cursor.execute("INSERT INTO citas (idPaciente, doctor, descripcion, fecha, hora) VALUES (%s, %s, %s, %s, %s);",
+            [datosPaciente[0][0], doctor, descripcion, fecha, hora])
         mensaje = 'Registro Correcto'
         self.conn.commit()
         cursor.close()
@@ -44,7 +59,8 @@ class dCita():
         self.conn = Connection.Connect() # Conexión a la base de datos
         cursor = self.conn.cursor() # Creación del cursor
         fecha = (str(fechaEspecificada.day()) +'/'+str(fechaEspecificada.month()) +'/'+str(fechaEspecificada.year()))
-        cursor.execute("SELECT * FROM citas WHERE fecha =  %s;", [fecha])
+        #cursor.execute("SELECT * FROM citas WHERE fecha =  %s;", [fecha])
+        cursor.execute("SELECT * FROM citas join EMPLEADO on EMPLEADO.EMPLEADO_OID = citas.idPaciente WHERE fecha =  %s;", [fecha])
         result = cursor.fetchall()
         cursor.close()
         self.conn.close()
