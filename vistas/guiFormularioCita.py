@@ -20,12 +20,12 @@ class Cita(QtWidgets.QMainWindow, Ui_Cita):
 		self.btnGuardar.clicked.connect(self.registrarCita)
 
 	def comprobarPaciente(self):
-		cedula = str(self.txtPaciente.text())
-		c = dCita()
-		datos = c.comprobarPaciente(cedula)
-		if datos == False:
+		cedula = str(self.txtPaciente.text()) # Ontengo la cedula ingresada
+		c = dCita() # Instancia de la clase cita
+		datos = c.comprobarPaciente(cedula) # Resultado de la consulta obtenida 
+		if datos == False: # Si retorna falso, es decir, no existe el paciente
 			QtWidgets.QMessageBox.information(self, 'Informacion', 'No existe un paciente con este número de cédula', QtWidgets.QMessageBox.Ok)
-		else:
+		else: # Si el paciente existe muestro su nombre en un campo
 			self.txtNombrePaciente.setText(str(datos[0][2])+' '+str(datos[0][3]))
 
 
@@ -36,9 +36,8 @@ class Cita(QtWidgets.QMainWindow, Ui_Cita):
 		fecha = str(self.txtFecha.text())
 		hora = str(self.txtHora.text())
 		descripcion = str(self.txtDescripcion.text())
-		#c = dCita(None, paciente, doctor, descripcion, fecha, hora)
-		if len(paciente) > 0:
-			c = dCita()
+		if len(paciente) > 0: # solo si se ha realizado la búsqueda de paciente se registrará la cita
+			c = dCita() # Instancia de la clase Cita
 			QtWidgets.QMessageBox.information(self, 'Informacion', c.registrarCita(doctor, descripcion, fecha, hora), QtWidgets.QMessageBox.Ok)
 		else:
 			QtWidgets.QMessageBox.information(self, 'Informacion', 'Seleccione un paciente', QtWidgets.QMessageBox.Ok)
