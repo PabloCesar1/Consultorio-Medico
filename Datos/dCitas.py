@@ -22,10 +22,10 @@ class dCita():
         """Metodos para comprobar si existe un paciente en especifico"""
         self.conn = Connection.Connect() # Conexión a la base de datos
         cursor = self.conn.cursor() # Creación del cursor
-        p = Paciente()
+        p = Paciente() # Instancia a la clase paciente
         global datosPaciente
-        datosPaciente = p.buscarPacientePorCedula(cedula)
-        if len(datosPaciente) == 0:
+        datosPaciente = p.buscarPacientePorCedula(cedula) # Se busca el paciente por cédula y su resultado se asigna en una variable
+        if len(datosPaciente) == 0: # Si hay resultado en la búsqueda se retorna falso de lo contrario devuelve los datos
             return False
         else:
             return datosPaciente
