@@ -14,6 +14,7 @@ class Cita(QtWidgets.QMainWindow, Ui_Cita):
 		self.setupUi(self)
 		self.setWindowTitle("Nueva Cita")
 		self.fecha = (str(date.day()) +'/'+str(date.month()) +'/'+str(date.year()))
+		self.txtFecha.setDisplayFormat('d/M/yyyy') # Para Linux
 		self.txtFecha.setDate(datetime.datetime.strptime(self.fecha, "%d/%m/%Y"))
 		self.txtHora.setText(hora)
 		self.btnBuscarPaciente.clicked.connect(self.comprobarPaciente)

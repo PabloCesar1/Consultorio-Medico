@@ -15,6 +15,7 @@ class viewFormPaciente(QtWidgets.QMainWindow, Ui_Formulario):
 		self.btnGuardar.clicked.connect(self.Registrar)
 		self.btnLimpiar.clicked.connect(self.borrarCampos)
 		self.btnBuscarImg.clicked.connect(self.buscarImagen)
+		self.txtFecha.setDisplayFormat('d/M/yyyy') # Para Linux
 		self.fname = 'Ninguna'
 
 	def Registrar(self):
@@ -62,7 +63,8 @@ class viewFormPaciente(QtWidgets.QMainWindow, Ui_Formulario):
 
 	def buscarImagen(self):
 		"""Este metodo nos permite buscar una imagen en nuestro equipo"""
-		fname, filter = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File', 'C:\\', 'Image Files (*.jpg)')
+		#fname, filter = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File', 'C:\\', 'Image Files (*.jpg)')
+		fname, filter = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File', '/home', 'Image Files (*.jpg)') # Para Linux
 		if fname:
 			self.selecciona = True
 			self.cargarImagen(fname)
