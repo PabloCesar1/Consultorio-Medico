@@ -31,7 +31,7 @@
 
 
 #titulo{
-	font-size: 25px;
+	font-size: 20px;
     color:#fff;
 	font-family: Arial, Verdana;
 	font-weight: bold;
@@ -69,23 +69,26 @@
      <height>71</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="titulo">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>520</x>
       <y>20</y>
-      <width>141</width>
+      <width>251</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>Aplicación con menú</string>
+     <string>Consultorio Médico</string>
     </property>
    </widget>
   </widget>
