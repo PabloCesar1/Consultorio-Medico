@@ -50,4 +50,4 @@ class listadoCitas(QtWidgets.QMainWindow, Ui_Dia):
 			self.frmCita = frmCita(self.date, self.hora) # Instancia de la clase
 			self.frmCita.show()
 		else:
-			QtWidgets.QMessageBox.information(self, 'Informacion', 'Por favor Seleccione la hora de la cita', QtWidgets.QMessageBox.Ok)
+			QtWidgets.QMessageBox.information(self, 'Información', 'Por favor seleccione la hora de la cita', QtWidgets.QMessageBox.Ok)

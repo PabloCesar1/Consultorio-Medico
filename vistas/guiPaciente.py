@@ -74,11 +74,11 @@ class viewPaciente(QtWidgets.QMainWindow, Ui_Paciente):
     def dropPaciente(self):
         datos = self.listaEmpleados.selectedItems()
         if len(datos) <= 0:
-            QtWidgets.QMessageBox.information(self, 'Informacion', 'Seleccione el usuario que desea eliminar', QtWidgets.QMessageBox.Ok)
+            QtWidgets.QMessageBox.information(self, 'Información', 'Seleccione el usuario que desea eliminar', QtWidgets.QMessageBox.Ok)
         else:
-            confirmar = QtWidgets.QMessageBox.question(self, "Informacion", "¿Seguro que desea eliminar los datos de este Paciente?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+            confirmar = QtWidgets.QMessageBox.question(self, "Información", "¿Seguro que desea eliminar los datos de este Paciente?", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
             if confirmar == QtWidgets.QMessageBox.Yes:
-                QtWidgets.QMessageBox.information(self, 'Informacion', self.Paciente.dropPaciente(datos[0].text()), QtWidgets.QMessageBox.Ok)
+                QtWidgets.QMessageBox.information(self, 'Información', self.Paciente.dropPaciente(datos[0].text()), QtWidgets.QMessageBox.Ok)
                 self.RellenarTabla()
 
     def Filtrar(self):

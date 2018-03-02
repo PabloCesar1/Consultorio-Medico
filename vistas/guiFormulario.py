@@ -30,6 +30,7 @@ class viewFormPaciente(QtWidgets.QMainWindow, Ui_Formulario):
 			str(self.txtTelefonoRecom.text()),str(self.txtCelularRecom.text()),str(self.txtCiudad.text()),self.fname)
 		if self.btnGuardar.text() == "Guardar":
 			QtWidgets.QMessageBox.information(self, 'Informacion', paciente.RegistrarPaciente(), QtWidgets.QMessageBox.Ok)
+			self.borrarCampos()
 		elif self.btnGuardar.text() == "Modificar":
 			QtWidgets.QMessageBox.information(self, 'Informacion', paciente.UpdatePaciente(), QtWidgets.QMessageBox.Ok)
 

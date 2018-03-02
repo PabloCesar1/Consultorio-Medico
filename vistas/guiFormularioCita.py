@@ -19,13 +19,22 @@ class Cita(QtWidgets.QMainWindow, Ui_Cita):
 		self.txtHora.setText(hora)
 		self.btnBuscarPaciente.clicked.connect(self.comprobarPaciente)
 		self.btnGuardar.clicked.connect(self.registrarCita)
+		
+	def borrarCampos(self):
+		"""Este metodo nos permite vaciar los campos del formulario de registro de citas"""
+		self.txtId.setText("")
+		self.txtPaciente.setText("")
+		self.txtNombrePaciente.setText("")
+		self.txtDoctor.setText("")
+		self.txtDescripcion.setText("")
+
 
 	def comprobarPaciente(self):
 		cedula = str(self.txtPaciente.text()) # Ontengo la cedula ingresada
 		c = dCita() # Instancia de la clase cita
 		datos = c.comprobarPaciente(cedula) # Resultado de la consulta obtenida 
 		if datos == False: # Si retorna falso, es decir, no existe el paciente
-			QtWidgets.QMessageBox.information(self, 'Informacion', 'No existe un paciente con este número de cédula', QtWidgets.QMessageBox.Ok)
+			QtWidgets.QMessageBox.information(self, 'Información', 'No existe un paciente con este número de cédula', QtWidgets.QMessageBox.Ok)
 		else: # Si el paciente existe muestro su nombre en un campo
 			self.txtNombrePaciente.setText(str(datos[0][2])+' '+str(datos[0][3]))
 
@@ -39,6 +48,7 @@ class Cita(QtWidgets.QMainWindow, Ui_Cita):
 		descripcion = str(self.txtDescripcion.text())
 		if len(paciente) > 0: # solo si se ha realizado la búsqueda de paciente se registrará la cita
 			c = dCita() # Instancia de la clase Cita
-			QtWidgets.QMessageBox.information(self, 'Informacion', c.registrarCita(doctor, descripcion, fecha, hora), QtWidgets.QMessageBox.Ok)
+			QtWidgets.QMessageBox.information(self, 'Información', c.registrarCita(doctor, descripcion, fecha, hora), QtWidgets.QMessageBox.Ok)
+			self.borrarCampos()
 		else:
-			QtWidgets.QMessageBox.information(self, 'Informacion', 'Seleccione un paciente', QtWidgets.QMessageBox.Ok)
+			QtWidgets.QMessageBox.information(self, 'Información', 'Seleccione un paciente', QtWidgets.QMessageBox.Ok)
