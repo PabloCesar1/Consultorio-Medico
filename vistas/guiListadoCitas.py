@@ -43,11 +43,13 @@ class listadoCitas(QtWidgets.QMainWindow, Ui_Dia):
 		self.hora = None
 		for index in sorted(indexes):
 			self.hora = self.citas.verticalHeaderItem(index.row()).text()
-			print(self.hora)
 
 	def nuevaCita(self):
 		if  hasattr(self, 'hora'):
-			self.frmCita = frmCita(self.date, self.hora) # Instancia de la clase
-			self.frmCita.show()
+			if self.citas.selectedItems():
+				QtWidgets.QMessageBox.information(self, 'Información', 'Ya existe una cita agendada en esta hora', QtWidgets.QMessageBox.Ok)
+			else:
+				self.frmCita = frmCita(self.date, self.hora) # Instancia de la clase
+				self.frmCita.show()
 		else:
 			QtWidgets.QMessageBox.information(self, 'Información', 'Por favor seleccione la hora de la cita', QtWidgets.QMessageBox.Ok)
